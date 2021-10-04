@@ -6,14 +6,14 @@
 
 <script>
 export default {
-  name: 'barra-titulo',
+  name: 'barra-titulo'
 }
 </script>
 
 <style scoped>
 #barra-titulo {
   width: 100%;
-  height: 100px;
+  height: 100%;
   display: flex;
   align-items: center;
   font-size: 25px;

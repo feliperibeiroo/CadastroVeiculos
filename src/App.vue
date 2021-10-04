@@ -1,10 +1,22 @@
 <template>
-  <router-view/>
+  <div id="corpo">
+    <barra-lateral/>
+    <barra-titulo/>
+    <div id="conteudo">
+      <router-view/>
+    </div>
+  </div>
 </template>
 
 <script>
+import BarraLateral from './components/BarraLateral'
+import BarraTitulo from './components/BarraTitulo'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    BarraLateral,
+    BarraTitulo
+  }
 }
 </script>
 
@@ -17,5 +29,30 @@ export default {
   --texto-hover: #000530;
   --hover-item: #92b4e2;
   font-family: 'Red Hat Text', 'Arial';
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#corpo {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 90px auto;
+  grid-template-areas: "n h"
+                       "n c";
+}
+
+barra-lateral {
+  grid-area: n;
+}
+
+barra-titulo {
+  grid-area: h;
+}
+
+#conteudo {
+  grid-area: c;
 }
 </style>

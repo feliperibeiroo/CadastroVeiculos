@@ -88,7 +88,7 @@ export default {
     },
     changeAlugueisOff: function () {
       this.alugueisActive = ""
-    },
+    }
   }
 }
 </script>
@@ -105,9 +105,8 @@ export default {
 }
 
 .container {
-  width: 230px;
+  width: 100%;
   height: 100vh;
-  float: left;
   background-color: var(--roxo-basico);
 }
 

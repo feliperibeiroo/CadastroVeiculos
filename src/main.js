@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
-import Home from './components/Home/Home'
-import Clientes from './components/Home/Clientes'
+import ConteudoHome from './components/Home/ConteudoHome'
+import ConteudoClientes from './components/Clientes/ConteudoClientes'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -11,7 +11,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/home',
-      component: Home
+      component: ConteudoHome
     },
     {
       path: '/',
@@ -19,7 +19,7 @@ const router = new VueRouter({
     },
     {
       path: '/clientes',
-      component: Clientes
+      component: ConteudoClientes
     }
   ]
 });

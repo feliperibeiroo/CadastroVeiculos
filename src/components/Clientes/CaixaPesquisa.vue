@@ -1,0 +1,83 @@
+<template>
+  <div id="master-container">
+    <div id="sub-title">
+      Pesquisar clientes
+    </div>
+    <div id="searchbox">
+        <input-field id="id-cliente-input" titulo="ID cliente"></input-field>
+        <input-field id="nome-input" titulo="Nome completo"></input-field>
+        <input-field id="rua-input" titulo="Rua"></input-field>
+        <input-field id="cidade-input" titulo="Cidade"></input-field>
+        <input-field id="estado-input" titulo="Estado"></input-field>
+        <button-search>Pesquisar</button-search>
+    </div>
+  </div>
+</template>
+
+<script>
+import InputField from './../InputField.vue'
+import buttonSearch from './../ButtonSearch.vue'
+
+export default {
+  name: 'caixa-pesquisa',
+  components: {
+    InputField,
+    buttonSearch
+  }
+}
+</script>
+
+<style scoped>
+#master-container {
+  height: 300px;
+}
+
+#searchbox {
+  margin: 15px;
+  border: 1px solid #828282;
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: grid;
+  grid-gap: 10px 15px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 50px;
+}
+
+#id-cliente-input {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#nome-input {
+  grid-column-start:2;
+  grid-column-end: 8;
+}
+
+#rua-input {
+  grid-column-start:1;
+  grid-column-end: 4;
+}
+
+#cidade-input {
+  grid-column-start:4;
+  grid-column-end: 6;
+}
+
+#estado-input {
+  grid-column-start:6;
+  grid-column-end: 7;
+}
+
+#sub-title {
+  background-color: #dcdcdc;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+button {
+  grid-column-start:7;
+  grid-column-end: 8;
+}
+</style>

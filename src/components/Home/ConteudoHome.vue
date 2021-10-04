@@ -25,7 +25,7 @@ export default {
 #background-image {
   width: 100%;
   height: 100%;
-  background-image: url(../assets/background-home.png);
+  background-image: url(../../assets/background-home.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: center;
