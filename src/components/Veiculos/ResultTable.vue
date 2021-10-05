@@ -3,18 +3,20 @@
     <table id="results-table">
       <tr class="cabecalho">
         <th class="id">ID</th>
-        <th class="nome">Nome completo</th>
-        <th class="rua">Rua</th>
-        <th class="cidade">Cidade</th>
-        <th class="estado">Estado</th>
+        <th class="proprietario">Proprietário</th>
+        <th class="modelo">Modelo</th>
+        <th class="marca">Marca</th>
+        <th class="cor">Cor</th>
+        <th class="placa">Placa</th>
         <th></th>
       </tr>
       <item-result>
         <td>0001</td>
         <td>Felipe Ribeiro Bezerra</td>
-        <td>Rua Rui Barbosa</td>
-        <td>Teresina</td>
-        <td>Piauí</td>
+        <td>Gol</td>
+        <td>Wolkswagen</td>
+        <td>Vermelho</td>
+        <td>NRT-8362</td>
       </item-result>
     </table>
   </div>
@@ -33,7 +35,6 @@ export default {
 <style scoped>
 #master {
   padding: 15px;
-  width: 100%;
 }
 
 table {
@@ -55,32 +56,11 @@ td, th {
   padding-left: 15px;
 }
 
-th.id {
-  width:10%;
-}
-
-th.nome {
-  width:30%;
-}
-
-th.rua {
-  width:20%;
-}
-
-th.cidade {
-  width:15%;
-}
-
-th.estado {
-  width:10%;
-}
-
 th {
   background-color: #fff;
 }
 
 tr:nth-child(even) {background: #becffa}
 tr:nth-child(odd) {background: #e3ebff}
-
 
 </style>

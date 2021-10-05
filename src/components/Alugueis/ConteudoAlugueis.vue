@@ -1,7 +1,7 @@
 <template>
 <div id="master">
   <div id="sub-title">
-        Pesquisar Clientes
+        Pesquisar Aluguéis
   </div>
   <caixa-pesquisa/>
   <result-table/>
@@ -12,7 +12,7 @@
 <script>
 import CaixaPesquisa from './CaixaPesquisa'
 import ResultTable from './ResultTable.vue'
-import Rodape from './../Rodape.vue'
+import Rodape from '../Rodape.vue'
 
 export default {
   name: 'conteudo-clientes',

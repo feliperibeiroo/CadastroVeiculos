@@ -1,16 +1,11 @@
 <template>
-  <div id="master-container">
-    <div id="sub-title">
-      Pesquisar clientes
-    </div>
-    <div id="searchbox">
-        <input-field id="id-cliente-input" titulo="ID cliente"></input-field>
-        <input-field id="nome-input" titulo="Nome completo"></input-field>
-        <input-field id="rua-input" titulo="Rua"></input-field>
-        <input-field id="cidade-input" titulo="Cidade"></input-field>
-        <input-field id="estado-input" titulo="Estado"></input-field>
-        <button-search>Pesquisar</button-search>
-    </div>
+  <div id="searchbox">
+      <input-field id="id-cliente-input" titulo="ID cliente"></input-field>
+      <input-field id="nome-input" titulo="Nome completo"></input-field>
+      <input-field id="rua-input" titulo="Rua"></input-field>
+      <input-field id="cidade-input" titulo="Cidade"></input-field>
+      <input-field id="estado-input" titulo="Estado"></input-field>
+      <button-search>Pesquisar</button-search>
   </div>
 </template>
 
@@ -29,7 +24,8 @@ export default {
 
 <style scoped>
 #master-container {
-  height: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 #searchbox {
@@ -66,14 +62,6 @@ export default {
 #estado-input {
   grid-column-start:6;
   grid-column-end: 7;
-}
-
-#sub-title {
-  background-color: #dcdcdc;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
 }
 
 button {

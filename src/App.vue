@@ -35,7 +35,7 @@ export default {
 }
 
 #corpo {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: 200px auto;
@@ -54,5 +54,6 @@ barra-titulo {
 
 #conteudo {
   grid-area: c;
+  position: relative;
 }
 </style>
