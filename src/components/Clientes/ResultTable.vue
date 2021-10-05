@@ -71,7 +71,7 @@ th.cidade {
 }
 
 th.estado {
-  width:10%;
+  width: auto;
 }
 
 </style>

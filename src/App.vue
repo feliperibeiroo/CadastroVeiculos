@@ -30,15 +30,14 @@ export default {
   --hover-item: #92b4e2;
   font-family: 'Red Hat Text', 'Arial';
   box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 #corpo {
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: 220px auto;
   grid-template-rows: 90px auto;
   grid-template-areas: "n h"
                        "n c";

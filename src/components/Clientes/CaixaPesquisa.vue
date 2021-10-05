@@ -16,13 +16,13 @@
 
 <script>
 import InputField from './../InputField.vue'
-import buttonSearch from './../ButtonSearch.vue'
+import ButtonSearch from './../ButtonSearch.vue'
 
 export default {
   name: 'caixa-pesquisa',
   components: {
     InputField,
-    buttonSearch
+    ButtonSearch
   }
 }
 </script>
