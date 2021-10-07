@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <div id="title-input">{{titulo+':'}}</div>
-    <input type="text">
+    <input v-bind:entrada="valor" v-on:input="$emit('input', $event.target.value)" type="text">
   </div>
 </template>
 
@@ -11,9 +11,18 @@ export default {
     titulo: {
       type: String,
       require: true
-    }
+    },
+    entrada: {
+      type: String,
+      require: true
+    },
   },
-  name: 'InputField'
+  name: 'InputField',
+  data: function () {
+    return {
+      valor: this.entrada
+    }
+  }
 }
 </script>
 

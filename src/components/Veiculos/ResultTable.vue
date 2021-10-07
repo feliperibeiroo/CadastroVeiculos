@@ -10,13 +10,13 @@
         <th class="placa">Placa</th>
         <th></th>
       </tr>
-      <item-result>
-        <td>0001</td>
-        <td>Felipe Ribeiro Bezerra</td>
-        <td>Gol</td>
-        <td>Wolkswagen</td>
-        <td>Vermelho</td>
-        <td>NRT-8362</td>
+      <item-result v-for="veiculo in veiculos" :key="veiculo.id">
+        <td>{{veiculo.id}}</td>
+        <td>{{veiculo.proprietario.nome}}</td>
+        <td>{{veiculo.modelo}}</td>
+        <td>{{veiculo.marca}}</td>
+        <td>{{veiculo.cor}}</td>
+        <td>{{veiculo.placa}}</td>
       </item-result>
     </table>
   </div>
@@ -26,6 +26,7 @@
 import ItemResult from './ItemResult'
 export default {
   name: 'result-table',
+  props: ['veiculos'],
   components:{
     ItemResult
   }

@@ -5,7 +5,7 @@ export default {
         api
         .get("/pessoas")
         .then((res) => {
-            return (res.data);
+            return res.data.bpi;
         })
         .catch((error) => {
             console.log(error);

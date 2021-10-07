@@ -1,25 +1,43 @@
 <template>
 <div id="master">
   <div id="sub-title">
-        Pesquisar Veículos
+    Pesquisar Aluguéis
   </div>
-    <caixa-pesquisa/>
-    <result-table/>
-    <rodape/>
+  <caixa-pesquisa @pesquisar="atualizarAlugueis"/>
+  <result-table :alugueis="alugueis"/>
+  <rodape/>
 </div>
 </template>
 
 <script>
 import CaixaPesquisa from './CaixaPesquisa'
 import ResultTable from './ResultTable.vue'
-import Rodape from './../Rodape.vue'
+import Rodape from '../Rodape.vue'
+import api from '../../services/api.js'
 
 export default {
-  name: 'conteudo-veiculos',
+  name: 'conteudo-clientes',
   components: { 
     CaixaPesquisa,
     ResultTable,
     Rodape
+  },
+  data: function () {
+    return {
+      alugueis: []
+    }
+  },
+  methods: {
+    atualizarAlugueis () {
+      api
+        .get("/alugueis")
+        .then((res) => {
+            this.alugueis = res.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
   }
   
 }

@@ -1,11 +1,11 @@
 <template>
 <div id="master">
   <div id="sub-title">
-        Pesquisar Aluguéis
+        Pesquisar Veículos
   </div>
-  <caixa-pesquisa/>
-  <result-table/>
-  <rodape/>
+    <caixa-pesquisa @pesquisar="atualizarVeiculos"/>
+    <result-table :veiculos="veiculos"/>
+    <rodape/>
 </div>
 </template>
 
@@ -13,13 +13,31 @@
 import CaixaPesquisa from './CaixaPesquisa'
 import ResultTable from './ResultTable.vue'
 import Rodape from '../Rodape.vue'
+import api from '../../services/api.js'
 
 export default {
-  name: 'conteudo-clientes',
+  name: 'conteudo-veiculos',
   components: { 
     CaixaPesquisa,
     ResultTable,
     Rodape
+  },
+  data: function () {
+    return {
+      veiculos: []
+    }
+  },
+  methods: {
+    atualizarVeiculos () {
+      api
+        .get("/veiculos")
+        .then((res) => {
+            this.veiculos = res.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
   }
   
 }

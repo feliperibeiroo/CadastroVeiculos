@@ -6,7 +6,7 @@
       <input-field id="marca-input" titulo="Marca"></input-field>
       <input-field id="placa-input" titulo="Placa"></input-field>
       <input-field id="proprietario-input" titulo="Proprietário"></input-field>
-      <button-search>Pesquisar</button-search>
+      <button-search @pesquisar="$emit('pesquisar')">Pesquisar</button-search>
   </div>
 </template>
 

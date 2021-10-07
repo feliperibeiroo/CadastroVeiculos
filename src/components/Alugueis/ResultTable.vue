@@ -4,30 +4,21 @@
       <tr class="cabecalho">
         <th class="id-veiculo">ID Veículo</th>
         <th class="nome-pro">Nome do proprietário</th>
-        <th class="modelo">Modelo do veículo</th>
-        <th class="marca">Marca do veículo</th>
-        <th class="cor">Cor do veículo</th>
+        <th class="modelo">Modelo</th>
+        <th class="marca">Marca</th>
+        <th class="cor">Cor</th>
         <th class="nome-cliente">Nome do cliente</th>
-        <th class="placa">Placa do veículo</th>
+        <th class="placa">Placa</th>
         <th></th>
       </tr>
-      <item-result>
-        <td>0001</td>
-        <td>Felipe Ribeiro Bezerra</td>
-        <td>Gol</td>
-        <td>Wolkswagen</td>
-        <td>Vermelho</td>
-        <td>Raul Dias Lopes</td>
-        <td>UYT-9732</td>
-      </item-result>
-      <item-result>
-        <td>0002</td>
-        <td>Alvaro de Freitas Dias</td>
-        <td>Uno</td>
-        <td>Fiat</td>
-        <td>Preto</td>
-        <td>Raul Dias Lopes</td>
-        <td>URO-3242</td>
+      <item-result v-for="aluguel in alugueis" :key="aluguel.id">
+        <td>{{aluguel.idVeiculo}}</td>
+        <td>{{aluguel.proprietario}}</td>
+        <td>{{aluguel.modelo}}</td>
+        <td>{{aluguel.marca}}</td>
+        <td>{{aluguel.cor}}</td>
+        <td>{{aluguel.cliente}}</td>
+        <td>{{aluguel.placa}}</td>
       </item-result>
     </table>
   </div>
@@ -37,6 +28,7 @@
 import ItemResult from './ItemResult'
 export default {
   name: 'result-table',
+  props: ['alugueis'],
   components:{
     ItemResult
   }

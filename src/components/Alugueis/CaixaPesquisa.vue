@@ -2,24 +2,24 @@
   <div id="searchbox">
       <input-field id="id-veiculo" titulo="ID veiculo"></input-field>
       <input-field id="nome-prop" titulo="Nome do proprietário"></input-field>
-      <input-field id="modelo" titulo="Modelo do veículo"></input-field>
-      <input-field id="marca" titulo="Marca do veículo"></input-field>
-      <input-field id="cor" titulo="Cor do veículo"></input-field>
+      <input-field id="modelo" titulo="Modelo"></input-field>
+      <input-field id="marca" titulo="Marca"></input-field>
+      <input-field id="cor" titulo="Cor"></input-field>
       <input-field id="nome-cliente" titulo="Nome do cliente"></input-field>
-      <input-field id="placa" titulo="Placa do veículo"></input-field>
-      <button-search>Pesquisar</button-search>
+      <input-field id="placa" titulo="Placa"></input-field>
+      <button-search @pesquisar="$emit('pesquisar')">Pesquisar</button-search>
   </div>
 </template>
 
 <script>
 import InputField from './../InputField.vue'
-import buttonSearch from './../ButtonSearch.vue'
+import ButtonSearch from './../ButtonSearch.vue'
 
 export default {
   name: 'caixa-pesquisa',
   components: {
     InputField,
-    buttonSearch
+    ButtonSearch
   }
 }
 </script>

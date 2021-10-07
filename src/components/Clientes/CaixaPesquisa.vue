@@ -1,11 +1,12 @@
 <template>
+
   <div id="searchbox">
-      <input-field id="id-cliente-input" titulo="ID cliente"></input-field>
-      <input-field id="nome-input" titulo="Nome completo"></input-field>
-      <input-field id="rua-input" titulo="Rua"></input-field>
-      <input-field id="cidade-input" titulo="Cidade"></input-field>
-      <input-field id="estado-input" titulo="Estado"></input-field>
-      <button-search>Pesquisar</button-search>
+      <input-field v-model="entradas.id" id="id-cliente-input" titulo="ID cliente"></input-field>
+      <input-field v-model="entradas.nome" id="nome-input" titulo="Nome completo"></input-field>
+      <input-field v-model="entradas.rua" id="rua-input" titulo="Rua"></input-field>
+      <input-field v-model="entradas.cidade" id="cidade-input" titulo="Cidade"></input-field>
+      <input-field v-model="entradas.estado" id="estado-input" titulo="Estado"></input-field>
+      <button-search @pesquisar="$emit('pesquisar', entradas)">Pesquisar</button-search>
   </div>
 </template>
 
@@ -15,6 +16,18 @@ import buttonSearch from './../ButtonSearch.vue'
 
 export default {
   name: 'caixa-pesquisa',
+  data: function () {
+    return {
+      nome: "",
+      entradas: {
+        id: "",
+        nome: "",
+        rua: "",
+        cidade: "",
+        estado: ""
+      }
+    }
+  },
   components: {
     InputField,
     buttonSearch
@@ -68,4 +81,5 @@ button {
   grid-column-start:7;
   grid-column-end: 8;
 }
+
 </style>

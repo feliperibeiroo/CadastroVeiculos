@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
-import ConteudoHome from './components/Home/ConteudoHome'
-import ConteudoClientes from './components/Clientes/ConteudoClientes'
-import ConteudoVeiculos from './components/Veiculos/ConteudoVeiculos'
-import ConteudoAlugueis from './components/Alugueis/ConteudoAlugueis'
+import TelaHome from './components/Home/TelaHome'
+import TelaClientes from './components/Clientes/TelaClientes'
+import TelaVeiculos from './components/Veiculos/TelaVeiculos'
+import TelaAlugueis from './components/Alugueis/TelaAlugueis'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -13,7 +13,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/home',
-      component: ConteudoHome
+      component: TelaHome
     },
     {
       path: '/',
@@ -21,15 +21,15 @@ const router = new VueRouter({
     },
     {
       path: '/clientes',
-      component: ConteudoClientes
+      component: TelaClientes
     },
     {
       path: '/veiculos',
-      component: ConteudoVeiculos
+      component: TelaVeiculos
     },
     {
       path: '/alugueis',
-      component: ConteudoAlugueis
+      component: TelaAlugueis
     }
   ]
 });
