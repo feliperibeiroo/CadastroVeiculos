@@ -27,11 +27,6 @@ export default {
   props: ['clientes'],
   components:{
     ItemResult
-  },
-  methods: {
-    atualizarClientes(){
-      console.log('Atualizou clientes')
-    }
   }
 }
 </script>

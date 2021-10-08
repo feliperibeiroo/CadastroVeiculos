@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <div id="title-input">{{titulo+':'}}</div>
-    <input v-bind:entrada="valor" v-on:input="$emit('input', $event.target.value)" type="text">
+    <input v-bind:entrada="valor" @keyup.enter="$emit('pesquisar')" v-on:input="$emit('input', $event.target.value)" type="text">
   </div>
 </template>
 

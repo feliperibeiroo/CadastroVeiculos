@@ -2,6 +2,7 @@
   <div id="master">
     <table id="results-table">
       <tr class="cabecalho">
+        <th class="id">ID</th>
         <th class="id-veiculo">ID Veículo</th>
         <th class="nome-pro">Nome do proprietário</th>
         <th class="modelo">Modelo</th>
@@ -12,6 +13,7 @@
         <th></th>
       </tr>
       <item-result v-for="aluguel in alugueis" :key="aluguel.id">
+        <td>{{aluguel.id}}</td>
         <td>{{aluguel.idVeiculo}}</td>
         <td>{{aluguel.proprietario}}</td>
         <td>{{aluguel.modelo}}</td>

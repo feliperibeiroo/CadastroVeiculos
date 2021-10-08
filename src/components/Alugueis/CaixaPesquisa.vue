@@ -1,13 +1,14 @@
 <template>
   <div id="searchbox">
-      <input-field id="id-veiculo" titulo="ID veiculo"></input-field>
-      <input-field id="nome-prop" titulo="Nome do proprietário"></input-field>
-      <input-field id="modelo" titulo="Modelo"></input-field>
-      <input-field id="marca" titulo="Marca"></input-field>
-      <input-field id="cor" titulo="Cor"></input-field>
-      <input-field id="nome-cliente" titulo="Nome do cliente"></input-field>
-      <input-field id="placa" titulo="Placa"></input-field>
-      <button-search @pesquisar="$emit('pesquisar')">Pesquisar</button-search>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.id" id="id-aluguel" titulo="ID aluguel"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.idVeiculo" id="id-veiculo" titulo="ID veiculo"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.nomeProp" id="nome-prop" titulo="Nome do proprietário"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.modelo" id="modelo" titulo="Modelo"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.marca" id="marca" titulo="Marca"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.cor" id="cor" titulo="Cor"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.nomeCliente" id="nome-cliente" titulo="Nome do cliente"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.placa" id="placa" titulo="Placa"></input-field>
+      <button-search @pesquisar="$emit('pesquisar', entradas)">Pesquisar</button-search>
   </div>
 </template>
 
@@ -20,8 +21,23 @@ export default {
   components: {
     InputField,
     ButtonSearch
+  },
+  data: function () {
+    return {
+      entradas: {
+        id: "",
+        idVeiculo: "",
+        nomeProp: "",
+        modelo: "",
+        marca: "",
+        cor: "",
+        nomeCliente: "",
+        placa: ""
+      }
+    }
   }
 }
+
 </script>
 
 <style scoped>
@@ -41,9 +57,15 @@ export default {
   grid-template-rows: 50px 50px;
 }
 
-#id-veiculo {
+#id-aluguel {
   grid-column-start: 1;
   grid-column-end: 2;
+  grid-row: 1;
+}
+
+#id-veiculo {
+  grid-column-start: 2;
+  grid-column-end: 3;
   grid-row: 1;
 }
 
@@ -60,13 +82,13 @@ export default {
 }
 
 #modelo {
-  grid-column-start: 2;
-  grid-column-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 5;
   grid-row: 1;
 }
 
 #marca {
-  grid-column-start: 4;
+  grid-column-start: 5;
   grid-column-end: 6;
   grid-row: 1;
 }

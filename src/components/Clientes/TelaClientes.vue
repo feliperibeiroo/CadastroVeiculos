@@ -5,12 +5,14 @@
     </div>
     <caixa-pesquisa @pesquisar="atualizarClientes"/>
     <result-table :clientes="pessoas"/>
-    <rodape/>
+    <rodape btnName="Cadastrar Cliente"/>
+    <modal-cadastro-cliente/>
   </div>
 </template>
 
 <script>
 import CaixaPesquisa from './CaixaPesquisa'
+import ModalCadastroCliente from './ModalCadastroCliente'
 import ResultTable from './ResultTable.vue'
 import Rodape from '../Rodape.vue'
 import api from '../../services/api.js'
@@ -19,32 +21,45 @@ export default {
   name: 'conteudo-clientes',
   data: function () {
     return {
-      pessoas: [],
-      entradas: {
-        id: "",
-        nome: "",
-        rua: "",
-        cidade: "",
-        estado: ""
-      }
+      pessoas: []
     }
   },
-  components: { 
+  components: {
     CaixaPesquisa,
     ResultTable,
-    Rodape
+    Rodape,
+    ModalCadastroCliente
   },
   methods: {
     atualizarClientes (entradas) {
-      console.log(entradas);
-        api
-        .get("/pessoas")
-        .then((res) => {
-            this.pessoas = res.data;
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+      function filtro (data) {
+          if (entradas.id!='')
+            data = data.filter(entrada => (entrada.id.toString().toLowerCase().includes(entradas.id.toLowerCase())));
+          
+          if (entradas.nome!='')
+            data = data.filter(entrada => (entrada.nome.toString().toLowerCase().includes(entradas.nome.toLowerCase())));
+
+          if (entradas.rua!='')
+            data = data.filter(entrada => (entrada.endereco.rua.toString().toLowerCase().includes(entradas.rua.toLowerCase())));
+
+          if (entradas.cidade!='')
+            data = data.filter(entrada => (entrada.endereco.cidade.toString().toLowerCase().includes(entradas.cidade.toLowerCase())));
+          
+          if (entradas.estado!='')
+            data = data.filter(entrada => (entrada.endereco.estado.toString().toLowerCase().includes(entradas.estado.toLowerCase())));
+
+          return data;
+      }
+
+      api
+      .get("/pessoas")
+      .then((res) => {
+          this.pessoas = filtro(res.data)
+      })
+      .catch((error) => {
+          console.log(error);
+          this.pessoas = []
+      });
     }
   }
 }
@@ -66,7 +81,7 @@ export default {
 
 #rodape {
   position: fixed;
-  height: 35px;
+  height: 50px;
   bottom: 0;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
 
   <div id="searchbox">
-      <input-field v-model="entradas.id" id="id-cliente-input" titulo="ID cliente"></input-field>
-      <input-field v-model="entradas.nome" id="nome-input" titulo="Nome completo"></input-field>
-      <input-field v-model="entradas.rua" id="rua-input" titulo="Rua"></input-field>
-      <input-field v-model="entradas.cidade" id="cidade-input" titulo="Cidade"></input-field>
-      <input-field v-model="entradas.estado" id="estado-input" titulo="Estado"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.id" id="id-cliente-input" titulo="ID cliente"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.nome" id="nome-input" titulo="Nome completo"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.rua" id="rua-input" titulo="Rua"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.cidade" id="cidade-input" titulo="Cidade"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.estado" id="estado-input" titulo="Estado"></input-field>
       <button-search @pesquisar="$emit('pesquisar', entradas)">Pesquisar</button-search>
   </div>
 </template>
@@ -18,7 +18,6 @@ export default {
   name: 'caixa-pesquisa',
   data: function () {
     return {
-      nome: "",
       entradas: {
         id: "",
         nome: "",
