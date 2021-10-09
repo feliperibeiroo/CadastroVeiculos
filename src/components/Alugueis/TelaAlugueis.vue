@@ -34,10 +34,10 @@ export default {
     atualizarAlugueis (entradas) {
       function filtro (data) {
         if (entradas.id!='')
-            data = data.filter(entrada => (entrada.id.toString().toLowerCase().includes(entradas.id.toLowerCase())));
+            data = data.filter(entrada => (entrada.id.toString() == entradas.id));
           
           if (entradas.idVeiculo!='')
-            data = data.filter(entrada => (entrada.idVeiculo.toString().toLowerCase().includes(entradas.idVeiculo.toLowerCase())));
+            data = data.filter(entrada => (entrada.idVeiculo.toString() == entradas.idVeiculo));
           
           if (entradas.nomeProp!='')
             data = data.filter(entrada => (entrada.proprietario.toString().toLowerCase().includes(entradas.nomeProp.toLowerCase())));

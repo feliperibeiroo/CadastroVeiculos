@@ -34,7 +34,7 @@ export default {
     atualizarClientes (entradas) {
       function filtro (data) {
           if (entradas.id!='')
-            data = data.filter(entrada => (entrada.id.toString().toLowerCase().includes(entradas.id.toLowerCase())));
+            data = data.filter(entrada => (entrada.id.toString() == entradas.id));
           
           if (entradas.nome!='')
             data = data.filter(entrada => (entrada.nome.toString().toLowerCase().includes(entradas.nome.toLowerCase())));

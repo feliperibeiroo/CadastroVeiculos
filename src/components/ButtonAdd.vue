@@ -1,5 +1,5 @@
 <template>
-  <button type="button" @click="$emit('adicionar')" data-toggle="modal" data-target="#modalExemplo"><slot></slot></button>
+  <button type="button" @click="$emit('adicionar')" data-toggle="modal" data-target="#modal-cadastro"><slot></slot></button>
 </template>
 
 <script>

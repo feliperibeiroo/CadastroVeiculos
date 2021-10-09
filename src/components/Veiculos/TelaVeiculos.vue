@@ -35,7 +35,7 @@ export default {
     atualizarVeiculos (entradas) {
       function filtro (data) {
           if (entradas.id!='')
-            data = data.filter(entrada => (entrada.id.toString().toLowerCase().includes(entradas.id.toLowerCase())));
+            data = data.filter(entrada => (entrada.id.toString() == entradas.id));
           
           if (entradas.modelo!='')
             data = data.filter(entrada => (entrada.modelo.toString().toLowerCase().includes(entradas.modelo.toLowerCase())));
