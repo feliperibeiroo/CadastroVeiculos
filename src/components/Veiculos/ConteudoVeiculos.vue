@@ -1,11 +1,11 @@
 <template>
 <div id="master">
   <div id="sub-title">
-        Pesquisar Clientes
+        Pesquisar Veículos
   </div>
-  <caixa-pesquisa/>
-  <result-table/>
-  <rodape/>
+    <caixa-pesquisa/>
+    <result-table/>
+    <rodape/>
 </div>
 </template>
 
@@ -15,7 +15,7 @@ import ResultTable from './ResultTable.vue'
 import Rodape from './../Rodape.vue'
 
 export default {
-  name: 'conteudo-clientes',
+  name: 'conteudo-veiculos',
   components: { 
     CaixaPesquisa,
     ResultTable,

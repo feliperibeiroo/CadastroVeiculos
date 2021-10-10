@@ -2,12 +2,10 @@
   <tr>
     <slot></slot>
     <td>
-      <a href="">
+      <div class="td-img">
         <img src="./../../assets/editar.svg" alt="">
-      </a>
-      <a href="">
         <img src="./../../assets/excluir.svg" alt="">
-      </a>
+      </div>
     </td>
   </tr>
 </template>
@@ -20,7 +18,6 @@ export default {
 
 <style scoped>
 td {
-  width: 10%;
   text-align: left;
   padding-left: 15px;
 }
@@ -30,7 +27,10 @@ tr {
   padding-left: 10px;
 }
 
-a {
-  margin-left: 10px;
+
+img {
+  right: 0;
+  padding-left: 25px;
+  justify-self: center;
 }
 </style>
