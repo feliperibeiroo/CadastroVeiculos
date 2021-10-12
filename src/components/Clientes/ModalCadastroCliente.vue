@@ -1,59 +1,118 @@
 <template>
-    <div class="modal fade" id="modal-cadastro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="label-modal">Cadastro de Clientes</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Conteúdo do Modal -->
-                <div class="container">
-                    <form>
-                        <div class="form-group">
-                            <label for="modal-cxnomecompleto">Nome completo</label>
-                            <input type="text" class="form-control" id="modal-cxnomecompleto" placeholder="Nome completo">
-                        </div>
-                        <div class="form-group">
-                            <label for="modal-cxrua">Rua</label>
-                            <input type="text" class="form-control" id="modal-cxrua" placeholder="Rua">
-                        </div>
-                        <div class="container-fluid">
-                            <div class="row" style="margin: 0 -30px;">
-                                <div class="col-sm">
-                                    <div class="form-group">
-                                        <label for="modal-cxcidade">Cidade</label>
-                                        <input type="text" class="form-control" id="modal-cxcidade" placeholder="Cidade">
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="form-group">
-                                        <label for="modal-cxestado">Estado</label>
-                                        <input type="text" class="form-control" id="modal-cxestado" placeholder="Estado">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
-            </div>
-            </div>
-        </div>
-    </div>
+    <b-modal :ok-disabled="!todosOsCamposPreenchidos" 
+            @ok="pressOk"
+            @cancel="pressCancelOrClose"
+            @close="pressCancelOrClose"
+            id="modal-cadastro-cliente" content-class="shadow" title="Cadastro de Clientes">
+        <b-form>
+            <b-form-group
+                id="label-nomecompleto"
+                label="Nome completo"
+                label-for="cx-nomecompleto"
+            >
+                <b-form-input
+                id="cx-nomecompleto"
+                type="text"
+                v-model="cadastro.nome"
+                placeholder="Nome completo"
+                required    
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+                id="label-rua"
+                label="Rua"
+                label-for="cx-rua"
+            >
+                <b-form-input
+                id="cx-rua"
+                type="text"
+                v-model="cadastro.rua"
+                placeholder="Rua"
+                required    
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+                id="label-cidade"
+                label="Cidade"
+                label-for="cx-cidade"
+            >
+                <b-form-input
+                id="cx-cidade"
+                type="text"
+                v-model="cadastro.cidade"
+                placeholder="Cidade"
+                required    
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+                id="label-estado"
+                label="Estado"
+                label-for="cx-estado"
+            >
+                <b-form-input
+                id="cx-estado"
+                type="text"
+                v-model="cadastro.estado"
+                placeholder="Estado"
+                required    
+                ></b-form-input>
+            </b-form-group>
+        </b-form>
+    </b-modal>
 </template>
 
 <script>
 export default {
-  name: 'modal-cadastro-cliente'
+  name: 'modal-cadastro-cliente',
+  data () {
+    return {
+        cadastro: {
+            nome: "",
+            rua: "",
+            cidade: "",
+            estado: ""
+        }
+    }
+  },
+ computed: {
+    todosOsCamposPreenchidos () {
+        return this.cadastro.nome!="" && this.cadastro.rua!="" && this.cadastro.cidade!="" && this.cadastro.estado!=""
+    }
+  },
+  methods: {
+      showModal(){
+          this.$bvModal.show('modal-cadastro-cliente')
+      },
+      limparCampos () {
+          this.cadastro.nome = "";
+          this.cadastro.rua = "";
+          this.cadastro.cidade = "";
+          this.cadastro.estado = "";
+      },
+      pressOk(){
+          this.$emit('ok', this.cadastro)
+          this.limparCampos()
+      },
+      pressCancelOrClose(){
+          this.limparCampos()
+      }
+  }
 }
 </script>
 
 <style scoped>
+#buttons-container {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+#buttons-container button {
+    margin-left: 10px;
+}
+
 
 </style>

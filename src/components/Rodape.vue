@@ -1,7 +1,7 @@
 <template>
     <div id="rodape">
         <div id="btn-add">
-            <button-add>{{btnName}}</button-add>
+            <button-add @adicionar="$emit('adicionar')">{{btnName}}</button-add>
         </div>
         <div id="commands">
             <div id="back-button">
@@ -38,10 +38,10 @@ export default {
 }
 
 #rodape {
+    position: relative;
     height: 100%;
-    width: 86%;
+    width: 100%;
     background-color: #dcdcdc;
-    position: fixed;
     display: flex;
     align-items: flex-end;
 }
@@ -66,11 +66,11 @@ export default {
 }
 
 #page-count {
-    padding-top: 3px;
     width: 70px;
-    height: 100%px;
+    height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 </style>

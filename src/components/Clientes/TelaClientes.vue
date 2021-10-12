@@ -5,8 +5,9 @@
     </div>
     <caixa-pesquisa @pesquisar="atualizarClientes"/>
     <result-table :clientes="pessoas"/>
-    <rodape btnName="Cadastrar Cliente"/>
-    <modal-cadastro-cliente/>
+    <modal-cadastro-cliente @ok="cadastrarCliente" ref="modalCadastro"/>
+    <SuccessAlert v-if="statusCadastro.sucesso" variant="success" show="2">Cadastro efetuado com sucesso!</SuccessAlert>
+    <SuccessAlert v-if="statusCadastro.falha" variant="danger" show="2">Falha no cadastro!</SuccessAlert>
   </div>
 </template>
 
@@ -14,23 +15,32 @@
 import CaixaPesquisa from './CaixaPesquisa'
 import ModalCadastroCliente from './ModalCadastroCliente'
 import ResultTable from './ResultTable.vue'
-import Rodape from '../Rodape.vue'
 import api from '../../services/api.js'
+import SuccessAlert from '../SuccessAlert.vue'
 
 export default {
   name: 'conteudo-clientes',
   data: function () {
     return {
+      statusCadastro : {
+        sucesso: false,
+        falha: false
+      },
       pessoas: []
     }
   },
   components: {
     CaixaPesquisa,
     ResultTable,
-    Rodape,
-    ModalCadastroCliente
+    ModalCadastroCliente,
+    SuccessAlert
   },
   methods: {
+    showModalCadastro () {
+      this.statusCadastro.sucesso = false;
+      this.statusCadastro.falha = false;
+      this.$refs.modalCadastro.showModal()
+    },
     atualizarClientes (entradas) {
       function filtro (data) {
           if (entradas.id!='')
@@ -60,6 +70,19 @@ export default {
           console.log(error);
           this.pessoas = []
       });
+    },
+    cadastrarCliente (entradas) {
+      console.log(entradas)
+      api
+      .post("/pessoas/cadastrar", entradas)
+      .then((res) => {
+        console.log(res)
+          this.statusCadastro.sucesso = true;
+      })
+      .catch((error) => {
+          console.log(error);
+          this.statusCadastro.falha = true;
+      });
     }
   }
 }
@@ -79,9 +102,4 @@ export default {
   padding-left: 15px;
 }
 
-#rodape {
-  position: fixed;
-  height: 50px;
-  bottom: 0;
-}
 </style>

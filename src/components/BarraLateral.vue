@@ -108,10 +108,12 @@ export default {
   width: 100%;
   height: 100vh;
   background-color: var(--roxo-basico);
+  padding: 0;
 }
 
 #nav {
   margin-top: 180px;
+  width: 100%;
 }
 
 .item-text {
