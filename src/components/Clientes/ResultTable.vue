@@ -9,12 +9,12 @@
         <th class="estado">Estado</th>
         <th></th>
       </tr>
-      <item-result>
-        <td>0001</td>
-        <td>Felipe Ribeiro Bezerra</td>
-        <td>Rua Rui Barbosa</td>
-        <td>Teresina</td>
-        <td>Piauí</td>
+      <item-result v-for="cliente in clientes" :key="cliente.id">
+        <td>{{cliente.id}}</td>
+        <td>{{cliente.nome}}</td>
+        <td>{{cliente.endereco.rua}}</td>
+        <td>{{cliente.endereco.cidade}}</td>
+        <td>{{cliente.endereco.estado}}</td>
       </item-result>
     </table>
   </div>
@@ -24,6 +24,7 @@
 import ItemResult from './ItemResult'
 export default {
   name: 'result-table',
+  props: ['clientes'],
   components:{
     ItemResult
   }

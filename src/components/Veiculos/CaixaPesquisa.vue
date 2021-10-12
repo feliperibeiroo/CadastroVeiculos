@@ -1,12 +1,12 @@
 <template>
   <div id="searchbox">
-      <input-field id="id-veiculo-input" titulo="ID veículo"></input-field>
-      <input-field id="modelo-input" titulo="Modelo"></input-field>
-      <input-field id="cor-input" titulo="Cor"></input-field>
-      <input-field id="marca-input" titulo="Marca"></input-field>
-      <input-field id="placa-input" titulo="Placa"></input-field>
-      <input-field id="proprietario-input" titulo="Proprietário"></input-field>
-      <button-search>Pesquisar</button-search>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.id" id="id-veiculo-input" titulo="ID veículo"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.modelo" id="modelo-input" titulo="Modelo"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.cor" id="cor-input" titulo="Cor"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.marca" id="marca-input" titulo="Marca"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.placa" id="placa-input" titulo="Placa"></input-field>
+      <input-field @pesquisar="$emit('pesquisar', entradas)" v-model="entradas.proprietario" id="proprietario-input" titulo="Proprietário"></input-field>
+      <button-search @pesquisar="$emit('pesquisar', entradas)">Pesquisar</button-search>
   </div>
 </template>
 
@@ -19,6 +19,18 @@ export default {
   components: {
     InputField,
     ButtonSearch
+  },
+  data: function () {
+    return {
+      entradas: {
+        id: "",
+        modelo: "",
+        cor: "",
+        marca: "",
+        placa: "",
+        proprietario: ""
+      }
+    }
   }
 }
 </script>
