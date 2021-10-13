@@ -1,10 +1,10 @@
 <template>
-<div id="main-container">
-  <div id="background-image"></div>
-  <span id="welcome-text">
-    SEJA BEM-VINDO!!!
-  </span>
-</div>
+  <div id="main-container">
+    <div id="background-image"></div>
+    <span id="welcome-text">
+      SEJA BEM-VINDO!!!
+    </span>
+  </div>
 </template>
 
 <script>
@@ -15,8 +15,6 @@ export default {
 
 <style scoped>
 #main-container {
-  position: relative;
-  display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;

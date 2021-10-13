@@ -6,7 +6,9 @@
     <caixa-pesquisa @pesquisar="atualizarVeiculos"/>
     <result-table :veiculos="veiculos"/>
     <rodape btnName="Cadastrar Veículo" />
-    <modal-cadastro-veiculo/>
+    <modal-cadastro-veiculo @ok="cadastrarVeiculo" ref="modalCadastro"/>
+    <SuccessAlert v-if="statusCadastro.sucesso" variant="success" show="2">Cadastro efetuado com sucesso!</SuccessAlert>
+    <SuccessAlert v-if="statusCadastro.falha" variant="danger" show="2">Falha no cadastro!</SuccessAlert>
 </div>
 </template>
 
@@ -16,6 +18,7 @@ import ResultTable from './ResultTable.vue'
 import Rodape from '../Rodape.vue'
 import api from '../../services/api.js'
 import ModalCadastroVeiculo from './ModalCadastroVeiculo.vue'
+import SuccessAlert from '../SuccessAlert.vue'
 
 export default {
   name: 'conteudo-veiculos',
@@ -23,15 +26,25 @@ export default {
     CaixaPesquisa,
     ResultTable,
     Rodape,
-    ModalCadastroVeiculo
+    ModalCadastroVeiculo,
+    SuccessAlert
   },
   data: function () {
     return {
-      veiculos: []
+      veiculos: [],
+      statusCadastro : {
+        sucesso: false,
+        falha: false
+      }
     }
   },
 
   methods: {
+    showModalCadastro () {
+      this.statusCadastro.sucesso = false;
+      this.statusCadastro.falha = false;
+      this.$refs.modalCadastro.showModal()
+    },
     atualizarVeiculos (entradas) {
       function filtro (data) {
           if (entradas.id!='')
@@ -63,6 +76,18 @@ export default {
       .catch((error) => {
           console.log(error);
           this.veiculos = []
+      });
+    },
+    cadastrarVeiculo (entradas) {
+      api
+      .post("/veiculos/cadastrar", entradas)
+      .then((res) => {
+        console.log(res)
+          this.statusCadastro.sucesso = true;
+      })
+      .catch((error) => {
+          console.log(error);
+          this.statusCadastro.falha = true;
       });
     }
   }

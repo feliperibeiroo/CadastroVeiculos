@@ -1,86 +1,145 @@
 <template>
-    <div class="modal fade" id="modal-cadastro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="label-modal">Cadastro de Veículos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Conteúdo do Modal -->
-                <div class="container">
-                    <form>
-                        <div class="form-group">
-                            <label for="modal-sel-proprietario">Proprietário</label>
-                            <select class="form-control" id="modal-sel-proprietario">
-                                <option></option>
-                                <option v-for="proprietario in proprietariosToSelect" :key="proprietario.id">{{proprietario.proprietario}}</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="modal-cxmodelo">Modelo</label>
-                            <input type="text" class="form-control" id="modal-cxmodelo" placeholder="Modelo">
-                        </div>
-                        <div class="form-group">
-                            <label for="modal-cxmarca">Marca</label>
-                            <input type="text" class="form-control" id="modal-cxmarca" placeholder="Marca">
-                        </div>
-                        <div class="container-fluid">
-                            <div class="row" style="margin: 0 -30px;">
-                                <div class="col-sm">
-                                    <div class="form-group">
-                                        <label for="modal-cxcor">Cor</label>
-                                        <input type="text" class="form-control" id="modal-cxcor" placeholder="Cor">
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="form-group">
-                                        <label for="modal-cxplaca">Placa</label>
-                                        <input type="text" class="form-control" id="modal-cxplaca" placeholder="Placa">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
-            </div>
-            </div>
-        </div>
-    </div>
+    <b-modal :ok-disabled="!todosOsCamposPreenchidos" 
+            @ok="pressOk"
+            @cancel="pressCancelOrClose"
+            @close="pressCancelOrClose"
+            id="modal-cadastro-veiculo" 
+            content-class="shadow" 
+            title="Cadastro de Veículos">
+        <b-form>
+            <b-form-group
+                id="label-idproprietario"
+                label="ID do proprietário"
+                label-for="cx-idproprietario"
+            >
+                <b-form-input
+                id="cx-idproprietario"
+                type="text"
+                v-model="cadastro.idproprietario"
+                @blur="carregarNomeCliente"
+                placeholder="ID do proprietário"
+                required
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+                id="label-nomeproprietario"
+                label="Nome do proprietário"
+                label-for="cx-nomeproprietario"
+            >
+                <b-form-input
+                id="cx-nomeproprietario"
+                type="text"
+                placeholder="Nome do proprietário"
+                readonly
+                required
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+                id="label-modelo"
+                label="Modelo"
+                label-for="cx-modelo"
+            >
+                <b-form-input
+                id="cx-modelo"
+                type="text"
+                v-model="cadastro.modelo"
+                placeholder="Modelo"
+                required    
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+                id="label-marca"
+                label="Marca"
+                label-for="cx-marca"
+            >
+                <b-form-input
+                id="cx-marca"
+                type="text"
+                v-model="cadastro.marca"
+                placeholder="Marca"
+                required    
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+                id="label-placa"
+                label="Placa"
+                label-for="cx-placa"
+            >
+                <b-form-input
+                id="cx-placa"
+                type="text"
+                v-model="cadastro.placa"
+                placeholder="Placa"
+                required    
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+                id="label-cor"
+                label="Cor"
+                label-for="cx-cor"
+            >
+                <b-form-input
+                id="cx-cor"
+                type="text"
+                v-model="cadastro.cor"
+                placeholder="Cor"
+                required    
+                ></b-form-input>
+            </b-form-group>
+        </b-form>
+    </b-modal>
 </template>
 
 <script>
-import api from '../../services/api.js'
-
 export default {
   name: 'modal-cadastro-veiculo',
   data: function () {
       return {
           proprietarios: [],
+          cadastro: {
+              idproprietario: "",
+              modelo: "",
+              marca: "",
+              placa: "",
+              cor: ""
+          },
           proprietariosToSelect: []
       }
   },
-  created: function () {
-      this.carregarProprietarios();
+ computed: {
+    todosOsCamposPreenchidos () {
+        return this.cadastro.idproprietario!="" &&
+               this.cadastro.modelo!="" && 
+               this.cadastro.marca!="" && 
+               this.cadastro.placa!="" && 
+               this.cadastro.cor!=""
+    }
   },
   methods: {
-      carregarProprietarios () {
-        api
-        .get("/proprietarios")
-        .then((res) => {
-            this.proprietarios = res.data;
-            this.proprietariosToSelect = Array.from(new Set(this.proprietarios.filter((prop)=>([prop.proprietario, prop.id]))));
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-        
+    showModal () {
+          this.$bvModal.show('modal-cadastro-veiculo')
+      },
+      limparCampos () {
+          this.cadastro.idproprietario = "";
+          this.cadastro.modelo = "";
+          this.cadastro.marca = "";
+          this.cadastro.placa = "";
+          this.cadastro.cor = "";
+      },
+      pressOk () {
+          this.$emit('ok', this.cadastro)
+          this.limparCampos()
+      },
+      pressCancelOrClose () {
+          this.limparCampos()
+      },
+      carregarNomeCliente () {
+
       }
   }
 }

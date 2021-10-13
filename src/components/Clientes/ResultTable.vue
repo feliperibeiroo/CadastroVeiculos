@@ -35,6 +35,8 @@ export default {
 #master {
   padding: 15px;
   width: 100%;
+  display: flex;
+  overflow-y: auto;
 }
 
 table {
